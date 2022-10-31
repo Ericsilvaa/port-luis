@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13"></script>
+
+    <title>Teste Port Luis</title>
+</head>
+<body>
+    <div id="app">
+        <header> 
+            <h1>
+                Sistema de Cadastro
+            </h1>
+        </header>
+
+
+        <section class="cabecalho">
+
+            <div class="painel-titulo">
+                <h2>Cadastro de Clientes</h2>
+            </div>
+            
+            <div class="painel-lista-principal">
+                <div v-if="datas.length > 0">
+                    <div class="painel-lista-titulos">
+                        <h3>Id</h3>
+                        <h3>Nome Cliente</h3>
+                        <h3>Numero Cliente</h3>
+                    </div>
+                       
+                    <ul>
+                        <li v-for="data in datas" :key="data.id" class="lista">
+                            <p>{{data.id}}</p>
+                            <p>{{data.nome}}</p>
+                            <p>{{data.numero_cliente}}</p>
+                        </li>
+                    </ul>
+                </div>
+
+                <div v-else>
+                    <p>Estamos sem Clientes :(</p>
+                </div>
+            </div>
+
+            <div class="btn-card">
+                <button @click="criarUsuario" class="btn">Adicionar</button>
+            </div>
+        </section>
+
+
+
+    </div>
+
+    
+    
+
+    <script src="./app.js"></script>
+</body>
+</html>

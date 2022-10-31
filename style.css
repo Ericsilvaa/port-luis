@@ -1,0 +1,99 @@
+/* RESET */
+*{
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --primeira-cor: #222;
+    --segunda-cor:  rgb(242, 238, 238);
+    --shadow-cor: rgba(0, 0, 0, 0.3);
+    --shadow-cor-2: rgba(0,0,0,0.9);
+    --text-cor: #fff;
+}
+
+ul {
+    list-style: none;
+}
+
+#app {
+    background-color: rgb(242, 238, 238);
+    width: 100vw;
+    height: 100vh;
+}
+
+/* Header */
+header {
+    background: var(--primeira-cor);
+    color: #fff;
+    text-align: center;
+    padding: 25px 0px;
+    box-shadow: 0px 1px 5px var(--shadow-cor-2);
+    margin-bottom: 100px;
+}
+
+/* painel */
+.cabecalho {
+    margin: 0 auto;
+    max-width: 750px;
+    display: grid;
+    grid-template-rows: 40px 1fr;
+    align-items: center;
+    box-shadow: 2px 1px 6px  var(--shadow-cor);
+    border-radius: 8px;
+}
+
+.painel-titulo {
+    background: #222;
+    color:var(--text-cor);
+    text-align: center;
+    padding: 8px;
+    border-top-left-radius:8px;
+    border-top-right-radius:8px;
+}
+
+.painel-lista-principal {
+    display: grid;
+    padding: 10px 30px;
+}
+
+.painel-lista-titulos {
+    display: flex;
+    padding: 0px 15px;
+    gap: 120px;
+    margin-bottom: 10px;
+}
+
+.lista {
+    display: flex;
+    padding: 0px 20px;
+    gap: 140px;
+    box-shadow: 1px 1px 3px var(--shadow-cor-2);
+    margin-bottom: 5px;
+}
+
+.lista p {
+    padding: 5px 5px;
+}
+
+/* botão -painel */
+.btn-card {
+    display: flex;
+    justify-content: end;
+    padding-right: 30px;
+    padding-bottom: 15px;
+}
+
+.btn {
+    padding: 10px 20px;
+    border: none;
+    background: var(--primeira-cor) ;
+    color: var(--text-cor);
+    font-weight: bold;
+    font-size: 0.875rem;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/*  */
