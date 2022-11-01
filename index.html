@@ -24,30 +24,55 @@
                 <h2>Cadastro de Clientes</h2>
             </div>
             
-            <div class="painel-lista-principal">
-                <div v-if="datas.length > 0">
-                    <div class="painel-lista-titulos">
-                        <h3>Id</h3>
-                        <h3>Nome Cliente</h3>
-                        <h3>Numero Cliente</h3>
+            <div>
+                <!-- Modal Criação -->
+                <section class="modal" v-if="painel == true" @click="fecharModal">
+                    <div class="modal-container">
+                        <label for="">Nome</label>
+                        <input type="text" v-model="nome" placeholder="Informe seu nome">
+                        <label for="">Telefone</label>
+                        <input type="text" v-model="telefone" placeholder="(xx) xxxx-xxxx">
+                        <div class="btn-card">
+                            <button @click="criarUsuario" class="btn">Adicionar</button>
+                        </div>
+                        <button @click="painel = false">X</button>
                     </div>
-                       
-                    <ul>
-                        <li v-for="data in datas" :key="data.id" class="lista">
-                            <p>{{data.id}}</p>
-                            <p>{{data.nome}}</p>
-                            <p>{{data.numero_cliente}}</p>
-                        </li>
-                    </ul>
-                </div>
+                </section>
 
-                <div v-else>
-                    <p>Estamos sem Clientes :(</p>
+                <!-- Lista Principal -->
+                <div class="painel-lista-principal">
+                    <div v-if="datas.length > 0">
+                        <div class="painel-lista-titulos">
+                            <h3>Cliente</h3>
+                            <h3>N° Cliente</h3>
+                            <h3>Ações</h3>
+                        </div>
+                           
+                        <ul>
+                            <li v-for="data in datas" :key="data.id" class="lista">
+                                <p>{{data.nome}}</p>
+                                <p>{{data.telefone}}</p>
+                                <div class="acoes">
+                                    <button>
+                                        <img src="" alt="Editar">
+                                    </button>
+                                    <button>
+                                        <img src="" alt="Excluir">
+                                    </button>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+    
+                    <div class="sem-clientes" v-else>
+                        <p> Estamos sem Clientes :( </p>
+                    </div>
                 </div>
+                
             </div>
 
-            <div class="btn-card">
-                <button @click="criarUsuario" class="btn">Adicionar</button>
+            <div class="btn-card" >
+                <button @click="abrirModal" class="btn">Adicionar</button>
             </div>
         </section>
 

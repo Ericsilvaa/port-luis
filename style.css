@@ -54,27 +54,48 @@ header {
 }
 
 .painel-lista-principal {
-    display: grid;
     padding: 10px 30px;
 }
 
 .painel-lista-titulos {
     display: flex;
-    padding: 0px 15px;
-    gap: 120px;
+    justify-content: space-between;
     margin-bottom: 10px;
+}
+
+.painel-lista-titulos h3 {
+    padding: 0px 20px;
 }
 
 .lista {
     display: flex;
+    align-items: center;
+    justify-content: space-between;
     padding: 0px 20px;
-    gap: 140px;
     box-shadow: 1px 1px 3px var(--shadow-cor-2);
     margin-bottom: 5px;
 }
 
 .lista p {
-    padding: 5px 5px;
+    padding: 6px 0px;
+    width: 20%;
+}
+
+.lista p:nth-child(2) {
+    text-align: center;
+}
+
+.lista .acoes img {
+    margin-left: 10px;
+}
+
+
+.sem-clientes {
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-top: 20px;
+    color: #95949479;
 }
 
 /* botão -painel */
@@ -96,4 +117,63 @@ header {
     cursor: pointer;
 }
 
-/*  */
+/* MODAL */
+.modal::before {
+    content: '';
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--shadow-cor);
+}
+
+.modal {
+    position: absolute;
+    width: 350px;
+}
+
+.modal-container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    background:  linear-gradient(to left, #222 90%, #333);
+    top: 15px;
+    left: 200px;
+    z-index: 1;
+    gap: 5px;
+    padding: 20px 15px;
+    animation: fadeIn .4s forwards;
+}
+
+@keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translate3d(0, -50px, 0);
+    }
+    to {
+      opacity: 1;
+      transform: translate3d(0px, 0, 0);
+    }
+  }
+
+  .modal label {
+    color: #fff;
+    font-size: 1.175rem;
+    font-weight: 700
+  }
+
+  .modal input {
+    padding: 8px;
+  }
+
+  .modal .btn-card {
+    padding-right: 0px;
+  }
+
+  .modal .btn-card .btn {
+    background: var(--text-cor);
+    color: #222;
+    margin-top: 8px;
+
+  }
