@@ -71,7 +71,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 0px 20px;
+    padding: 3px 20px;
     box-shadow: 1px 1px 3px var(--shadow-cor-2);
     margin-bottom: 5px;
 }
@@ -81,12 +81,17 @@ header {
     width: 20%;
 }
 
-.lista p:nth-child(2) {
-    text-align: center;
-}
+
 
 .lista .acoes img {
-    margin-left: 10px;
+    width: 19px;
+    height: 19px;
+    margin-left: 15px;
+}
+
+.acoes {
+    display: flex;
+    cursor: pointer;
 }
 
 
@@ -175,5 +180,30 @@ header {
     background: var(--text-cor);
     color: #222;
     margin-top: 8px;
+  }
 
+  .modal p {
+    font-size: 0.7 75rem;
+    letter-spacing: 1px;
+    color: red;
+    font-weight: 400;
+  }
+
+  /* PopUp */
+
+  .popUpPending,
+  .popUpdone{
+    padding: 3px 10px;
+    margin-top: 10px;
+    font-size: 0.975rem;
+    letter-spacing: 0.6px;
+    color: #fff;
+  }
+
+  .popUpPending {
+    background: red;
+  }
+
+  .popUpdone {
+    background: green;
   }

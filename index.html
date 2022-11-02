@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/vue@2.7.13"></script>
-
+    <!-- <script src="https://cdn.jsdelivr.net/npm/vuelidate@0.7.4/lib/index.min.js"></script> -->
     <title>Teste Port Luis</title>
 </head>
 <body>
@@ -29,9 +29,11 @@
                 <section class="modal" v-if="painel == true" @click="fecharModal">
                     <div class="modal-container">
                         <label for="">Nome</label>
-                        <input type="text" v-model="nome" placeholder="Informe seu nome">
+                        <input type="text" v-model="usuario.nome" placeholder="Informe seu nome">
                         <label for="">Telefone</label>
-                        <input type="text" v-model="telefone" placeholder="(xx) xxxx-xxxx">
+                        <input type="text" v-model="usuario.telefone" 
+                            placeholder="(xx) xxxxx-xxxx" v-mask="'(xx) xxxxx-xxxx'">
+                        <p v-if="mensagem">Preenha o campo corretamente.</p>
                         <div class="btn-card">
                             <button @click="criarUsuario" class="btn">Adicionar</button>
                         </div>
@@ -49,19 +51,21 @@
                         </div>
                            
                         <ul>
-                            <li v-for="data in datas" :key="data.id" class="lista">
+                            <li v-for="(data,i) in datas" :key="data.nome" class="lista">
                                 <p>{{data.nome}}</p>
                                 <p>{{data.telefone}}</p>
                                 <div class="acoes">
-                                    <button>
-                                        <img src="" alt="Editar">
-                                    </button>
-                                    <button>
-                                        <img src="" alt="Excluir">
-                                    </button>
+                                    <div @click="editarUsuario(data)">
+                                        <img src="./assets/editar-texto.png" alt="Editar">
+                                    </div>
+                                    <div @click="removerUsuario(i)">
+                                        <img src="./assets/excluir.png" alt="Excluir">
+                                    </div>
                                 </div>
                             </li>
                         </ul>
+
+                        <p class="popUpClass" v-if="alertaAtivo">{{popUp}}</p>
                     </div>
     
                     <div class="sem-clientes" v-else>
@@ -84,5 +88,7 @@
     
 
     <script src="./app.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/v-mask/2.2.1/v-mask.min.js" integrity="sha512-7oTKsUd6KxNwNXCNdKm88VZRJMGK5NU5GKBf/Ia0xt/5gAAV63sVXsEXi7DHbkva/C7C5LGAR3IU1BmGUMkA0Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </body>
 </html>
