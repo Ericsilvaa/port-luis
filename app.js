@@ -1,73 +1,91 @@
 const vm = new Vue ({
     el: "#app",
     data: {
-        usuario: {
-            id: null,
-            nome: '',
-            telefone: '',
-        },
+        id: 0,
+        nome: '',
+        telefone: '',
         datas: [],
+
+        editar: false,
+        delete: false,
+        cancelar: false,
+
         painel: false,
         mensagem: false,
         popUp: 'Item de Confirmação de Ação',
         alertaAtivo: false,
         popUpdone: false
     },
-    
     methods: {
         abrirModal() {
             this.painel = true
         },
         fecharModal({ target, currentTarget}) {
-            if (target === currentTarget) this.painel = false
-            this.limpar()
+            if (target === currentTarget) this.cancelarUsuario() 
         },
-        criarUsuario() {
-            // id randomico
-            if( this.usuario.id === null) {
-                this.usuario.id = Math.random().toFixed(2)
-            }
-
-            const {nome, telefone, id} = this.usuario
-
-            if (telefone || nome === !null) {
-                this.datas.push({nome, telefone, id})
+        criarUsuario(n, t) {
+            this.editar = false
+            if (n || t == !null) {
+                this.datas.push({
+                    nome: this.nome,
+                    telefone: this.telefone
+                })
+                localStorage.setItem('datas', JSON.stringify(this.datas))
                 this.limpar()
-                this.alerta('Cliente Cadastrado')
                 this.painel = false
             } else {
                 this.mensagem = true
             }
-
-            console.log(this.datas)
         },
-        removerUsuario(index) {
-            this.datas.splice(index, 1)
-            this.limpar()
-            // this.popUpPending = true
-            this.alerta('Cleinte Excluído')
-        },
-        editarUsuario(index) {
+        editarUsuario(d,i) {
+            this.editar = true
             this.abrirModal()
-            this.usuario = { ...index}
-
-            console.log(this.usuario)
-
+            this.nome = d.nome
+            this.telefone = d.telefone
+            this.id = i
+        },
+        atualizarUsuario() {
+            this.painel = false
+            this.editar = false
+            let datadb = {
+                nome: this.nome,
+                telefone: this.telefone
+            }
+            this.datas[this.id] = datadb
+            localStorage.setItem('datas', JSON.stringify(this.datas));
+            let dataDB = JSON.parse(localStorage.getItem('datas'))
+            this.datas = dataDB
+        },
+        cancelarUsuario() {
+            this.editar = false
+            this.painel = false
+            this.limpar()
+        },
+        removerUsuario(i) {
+            this.datas.splice(i, 1)
+            localStorage.setItem('datas', JSON.stringify(this.datas))
+            this.alerta('Cliente Excluído')
+            this.limpar()
         },
         alerta(mensagem) {
             this.popUp = mensagem
-            this.alertaAtivo = true
+            this.alertaAtivo = true 
             setTimeout(() => {
                 this.alertaAtivo = false
             }, 800);
         },
         limpar() {
-            this.usuario.nome = ''
-            this.usuario.telefone = ''
-            this.usuario.id = null
-        },
-
-              
+            this.nome = ''
+            this.telefone = ''
+        },         
+    },
+    created() {
+        let dataDB = JSON.parse(localStorage.getItem('datas'))
+        if(dataDB == null) {
+            this.tasks = []
+        } else {
+            this.datas = dataDB
+        }
     }
 
 
