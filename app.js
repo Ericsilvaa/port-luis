@@ -1,5 +1,6 @@
 const vm = new Vue ({
     el: "#app",
+    vuetify: new Vuetify(),
     data: {
         id: 0,
         nome: '',
@@ -14,22 +15,35 @@ const vm = new Vue ({
         mensagem: false,
         popUp: 'Item de Confirmação de Ação',
         alertaAtivo: false,
-        popUpdone: false
+        // popUpdone: false,
+        spTelefone: false
     },
+    // Telefone(11)
+    // computed: {
+    //     stateClass() {
+    //         return {
+    //             this.telefone = d.telefone
+    //             if() {
+    //                 sp: this.spTelefone          
+    //             }
+    //     }
+    // },
     methods: {
         abrirModal() {
             this.painel = true
         },
         fecharModal({ target, currentTarget}) {
-            if (target === currentTarget) this.cancelarUsuario() 
+            if (target === currentTarget) this.cancelarUsuario()
         },
         criarUsuario(n, t) {
             this.editar = false
-            if (n || t == !null) {
+            this.mensagem = false
+            if (n.length > 2 && t.length > 14) {
                 this.datas.push({
                     nome: this.nome,
                     telefone: this.telefone
                 })
+                
                 localStorage.setItem('datas', JSON.stringify(this.datas))
                 this.limpar()
                 this.painel = false
@@ -40,6 +54,7 @@ const vm = new Vue ({
         editarUsuario(d,i) {
             this.editar = true
             this.abrirModal()
+            
             this.nome = d.nome
             this.telefone = d.telefone
             this.id = i
@@ -47,18 +62,28 @@ const vm = new Vue ({
         atualizarUsuario() {
             this.painel = false
             this.editar = false
+            
             let datadb = {
                 nome: this.nome,
                 telefone: this.telefone
             }
             this.datas[this.id] = datadb
-            localStorage.setItem('datas', JSON.stringify(this.datas));
-            let dataDB = JSON.parse(localStorage.getItem('datas'))
-            this.datas = dataDB
+            // const nome = this.datas[this.id].nome.length
+
+            // if(nome > 2 ) {
+                localStorage.setItem('datas', JSON.stringify(this.datas));
+                let dataDB = JSON.parse(localStorage.getItem('datas'))
+                this.datas = dataDB
+                this.mensagem = false
+                this.limpar()
+            // } else {
+            //     this.mensagem = true
+            // }
         },
         cancelarUsuario() {
             this.editar = false
             this.painel = false
+            this.mensagem = false
             this.limpar()
         },
         removerUsuario(i) {
@@ -87,68 +112,6 @@ const vm = new Vue ({
             this.datas = dataDB
         }
     }
-
-
-        
-
-        // LocalStorage by me
-        // if(localStorage.clientes) {
-            // this.datas = JSON.parse(localStorage.getItem('clientes'))
-            // }
-            // let cliente = this.datas
-            // this.datas.push(cliente)
-            // localStorage.clientes = JSON.stringify(this.datas)
-
-        // LocalStorage
-        // const getLocalStorage = () => JSON.parse(localStorage.getItem('db_client')) ?? []
-        // const setLocalStorage = (dbClient) => localStorage.setItem("db_client", JSON.stringify(dbClient))
-
-
-        // const deleteClient = (index) => {
-        // const dbClient = readClient()
-        // dbClient.splice(index, 1)
-        // setLocalStorage(dbClient)
-        // }
-
-        // const updateClient = (index, client) => {
-        // const dbClient = readClient()
-        // dbClient[index] = client
-        // setLocalStorage(dbClient)
-        // }
-
-
-
-        // LocalStorage 2
-        // armazenarDados() {
-        //     const localStorage = JSON.parse(localStorage
-        //         .getItem('clientes'))
-        //     let clientes = localStorage
-        //         .getItem('clientes') !== null ? localStorage : []
-        // }
-
-        // const dados = {
-        //     nome: this.nome,
-        //     telefone: this.telefone
-        // }
-        // if (dados.nome && dados.telefone !== null) {
-        //     this.datas.push(dados)
-        //     console.log(dados)
-        //     this.painel = false
-        //     this.data = ''
-        //     console.log(this.datas)
-
-        // } else {
-        //     console.log('preencha o campo')
-
-        // }
-            
-        // verificarCriacao() {
-            
-        // }
-
-
-
-
         // ALERTA
         // computed: {
         //     popUpClass() {
@@ -167,18 +130,6 @@ const vm = new Vue ({
             //     }
             //     return popUp
             // }
-        // },
-        // watch: {
-        //     // lookCriar() {
-        //     //     if(this.datas == indexOf() + 1){
-        //     //         this.criarUsuario = true
-        //     //     }
-        //     }
-        //     // desativarErro() {
-        //     //     setTimeout(() => {
-        //     //         if(this.mensagem == true) this.mensagem = false               
-        //     //     }, 2000);
-        //     // }
         // },
 
 })

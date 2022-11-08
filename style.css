@@ -10,6 +10,7 @@
     --segunda-cor:  rgb(242, 238, 238);
     --shadow-cor: rgba(0, 0, 0, 0.3);
     --shadow-cor-2: rgba(0,0,0,0.9);
+    --shadow-cor-sp: rgba(52, 136, 188, 0.9);
     --text-cor: #fff;
 }
 
@@ -76,22 +77,24 @@ header {
     margin-bottom: 5px;
 }
 
+.lista .sp {
+  box-shadow: 1px 1px 3px var(--shadow-cor-sp);
+}
+
 .lista p {
     padding: 6px 0px;
     width: 20%;
 }
 
 
-
-.lista .acoes img {
-    width: 19px;
-    height: 19px;
-    margin-left: 15px;
-}
-
 .acoes {
     display: flex;
+    align-items: center;
     cursor: pointer;
+}
+
+.acoes svg {
+  margin-left: 5px;
 }
 
 
@@ -141,7 +144,7 @@ header {
 
 .modal {
     position: absolute;
-    width: 350px;
+    width: 400px;
 }
 
 .modal-container {
@@ -153,7 +156,8 @@ header {
     left: 200px;
     z-index: 1;
     gap: 5px;
-    padding: 20px 15px;
+    padding: 0 30px;
+    padding-top: 30px;
     animation: fadeIn .4s forwards;
 }
 
@@ -175,7 +179,10 @@ header {
   }
 
   .modal input {
+    color: #fff;
     padding: 8px;
+    border: solid 1px white;
+    border-radius: 4px;
   }
 
   .modal .btn-card {
@@ -193,6 +200,17 @@ header {
     letter-spacing: 1px;
     color: red;
     font-weight: 400;
+  }
+
+  .fechar {
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    background-color: #fff;
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
   }
 
   /* PopUp */
